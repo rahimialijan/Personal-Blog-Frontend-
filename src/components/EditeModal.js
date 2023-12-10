@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-const EditModal = ({ show, onClose, onSubmit, post }) => {
+const EditModal = ({
+  show, onClose, onSubmit, post,
+}) => {
   const [editedFormData, setEditedFormData] = useState({
     title: '',
     author: '',
@@ -34,6 +37,7 @@ const EditModal = ({ show, onClose, onSubmit, post }) => {
       <div className="modal-content">
         <h2>Edit Post</h2>
         <form onSubmit={(e) => e.preventDefault()}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="edit-title">Title:</label>
           <input
             id="edit-title"
@@ -43,6 +47,7 @@ const EditModal = ({ show, onClose, onSubmit, post }) => {
             onChange={handleEditFormChange}
           />
 
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="edit-author">Author:</label>
           <input
             id="edit-author"
@@ -52,6 +57,7 @@ const EditModal = ({ show, onClose, onSubmit, post }) => {
             onChange={handleEditFormChange}
           />
 
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="edit-content">Content:</label>
           <textarea
             id="edit-content"
@@ -60,12 +66,31 @@ const EditModal = ({ show, onClose, onSubmit, post }) => {
             onChange={handleEditFormChange}
           />
 
-          <button onClick={handleEditFormSubmit}>Save Changes</button>
-          <button onClick={onClose}>Cancel</button>
+          <button type="button" onClick={handleEditFormSubmit}>
+            Save Changes
+          </button>
+          <button type="button" onClick={onClose}>
+            Cancel
+          </button>
         </form>
       </div>
     </div>
   );
+};
+
+EditModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  post: PropTypes.shape({
+    title: PropTypes.string,
+    author: PropTypes.string,
+    content: PropTypes.string,
+  }),
+};
+
+EditModal.defaultProps = {
+  post: null,
 };
 
 export default EditModal;

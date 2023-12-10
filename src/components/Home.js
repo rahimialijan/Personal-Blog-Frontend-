@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, fetchPosts, updatePost } from '../redux/postSlice';
 import EditModal from './EditeModal';
@@ -26,13 +26,13 @@ const Home = () => {
 
   const handleEditModalClose = () => {
     setShowEditModal(false);
-    setSelectedPost(null); 
+    setSelectedPost(null);
   };
 
   const handleEditFormSubmit = (editedFormData) => {
     dispatch(updatePost({ postId: selectedPost.id, formData: editedFormData }));
     setShowEditModal(false);
-    setSelectedPost(null); 
+    setSelectedPost(null);
   };
 
   if (loading) {
@@ -56,8 +56,12 @@ const Home = () => {
             <span>{post.author}</span>
           </p>
           <p>{post.content ? `${post.content.slice(0, 50)}...` : 'No content available'}</p>
-          <button onClick={() => handleUpdatePost(post)}>Update</button>
-          <button onClick={() => handleDeletePost(post.id)}>Delete</button>
+          <button type="button" onClick={() => handleUpdatePost(post)}>
+            Update
+          </button>
+          <button type="button" onClick={() => handleDeletePost(post.id)}>
+            Delete
+          </button>
         </div>
       ))}
 
@@ -74,4 +78,3 @@ const Home = () => {
 };
 
 export default Home;
-

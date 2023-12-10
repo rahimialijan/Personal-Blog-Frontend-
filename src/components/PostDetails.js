@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 const PostDetails = () => {
@@ -20,11 +20,17 @@ const PostDetails = () => {
   return (
     <div>
       <h2>
-        Post {postId} Details
+        Post
+        {' '}
+        {postId}
+        {' '}
+        Details
       </h2>
       <h3>{post.title}</h3>
       <p>
-        Author: {post.author}
+        Author:
+        {' '}
+        {post.author}
       </p>
       <p>{post.content}</p>
     </div>

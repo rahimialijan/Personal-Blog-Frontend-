@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { createPost } from "../redux/postSlice";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createPost } from '../redux/postSlice';
 
 const PostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    title: "",
-    author: "",
-    content: "",
+    title: '',
+    author: '',
+    content: '',
   });
 
   const handleInputChange = (e) => {
@@ -23,13 +23,14 @@ const PostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPost(formData));
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <div>
       <h2>Create New Post</h2>
       <form onSubmit={handleSubmit}>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="title">Title:</label>
         <input
           id="title"
@@ -38,7 +39,7 @@ const PostForm = () => {
           value={formData.title}
           onChange={handleInputChange}
         />
-
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="author">Author:</label>
         <input
           id="author"
@@ -47,7 +48,7 @@ const PostForm = () => {
           value={formData.author}
           onChange={handleInputChange}
         />
-
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="content">Content:</label>
         <textarea
           id="content"
