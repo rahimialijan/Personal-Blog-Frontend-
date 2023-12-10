@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 const POST_API = 'http://localhost:3000/api/v1/posts';
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
@@ -28,6 +29,15 @@ export const deletePost = createAsyncThunk('posts/deletePost', async (postId) =>
   }
   catch (error){
     throw error.message
+  }
+})
+
+export const updatePost = createAsyncThunk('posts/updatePost', async ({postId, formData}) => {
+  try {
+      const response = await axios.put(`${POST_API}/${postId}`, formData)
+      return response.data
+  } catch (error){
+      throw error.message
   }
 })
 
@@ -82,7 +92,29 @@ const postSlice = createSlice({
         ...state,
         loading: false,
         error: null,
-      }));
+      }))
+      .addCase(updatePost.pending, (state) =>({
+        ...state,
+        loading:true,
+        error:null
+      }))
+      .addCase(updatePost.fulfilled, (state, action) =>{
+        const updatePosts = state.posts.map((post) =>
+          post.id === action.payload.id ? action.payload : post
+        );
+
+        return {
+          ...state,
+          posts: updatePosts,
+          loading: false,
+          error: null
+        }
+      })
+      .addCase(updatePost.rejected, (state) =>({
+        ...state,
+        loading: false,
+        error: null
+      }))
   },
 });
 
