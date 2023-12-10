@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createPost } from '../redux/postSlice';
+import { createPost } from '../redux/postActions';
 
 const PostForm = () => {
   const dispatch = useDispatch();
