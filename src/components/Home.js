@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../redux/postSlice';
+import { deletePost, fetchPosts } from '../redux/postSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,9 +12,9 @@ const Home = () => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log('Posts updated:', posts);
-  }, [posts]);
+  const handleDeletePost =(postId)=>{
+      dispatch(deletePost(postId))
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,13 +30,14 @@ const Home = () => {
       {posts.map((post) => (
         <div key={`${post.id}-${Math.random()}`}>
           <Link to={`/post/${post.id}`}>
-            {post.title && <h3>{post.title}</h3>}
+             <h3>{post.title}</h3>
           </Link>
           <p>
             Author:
-            {post.author && <span>{post.author}</span>}
+             <span>{post.author}</span>
           </p>
           <p>{post.content ? `${post.content.slice(0, 50)}...` : 'No content available'}</p>
+          <button onClick={() => handleDeletePost(post.id)}>Delete</button>
         </div>
       ))}
     </div>

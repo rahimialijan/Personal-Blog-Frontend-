@@ -21,6 +21,16 @@ export const createPost = createAsyncThunk('posts/createPost', async (formData) 
   }
 });
 
+export const deletePost = createAsyncThunk('posts/deletePost', async (postId) =>{
+  try {
+    await axios.delete(`${POST_API}/${postId}`)
+    return postId;
+  }
+  catch (error){
+    throw error.message
+  }
+})
+
 
 const initialState = {
   posts: [],
@@ -51,6 +61,24 @@ const postSlice = createSlice({
         error: null,
       }))
       .addCase(fetchPosts.rejected, (state) => ({
+        ...state,
+        loading: false,
+        error: null,
+      }))
+      .addCase(deletePost.fulfilled, (state, action) =>{
+        return {
+          ...state,
+          loading: false,
+          posts: state.posts.filter((post)=> post.id !== action.payload),
+          error:null
+        }
+      })
+      .addCase(deletePost.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(deletePost.rejected, (state) => ({
         ...state,
         loading: false,
         error: null,
