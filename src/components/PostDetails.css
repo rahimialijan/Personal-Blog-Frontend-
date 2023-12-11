@@ -1,0 +1,38 @@
+
+.details-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.post-details-container{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(197, 222, 231);
+    padding: 30px;
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 120px;
+}
+
+.post-title{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    color: rgb(34, 33, 33);
+}
+.post-author{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: rgb(116, 116, 116);
+}
+.post-content{
+    font-size: 1.2rem;
+    color: rgb(62, 62, 62);
+}
+.back-button{
+    margin-top: 15px;
+}
