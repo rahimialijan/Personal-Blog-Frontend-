@@ -1,6 +1,11 @@
 .main-container{
     margin: 80px 40px;
     background-color: rgb(245, 243, 243);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
 
@@ -12,6 +17,24 @@
    padding-right: 20px;
    padding-bottom: 20px;
 }
+
+@media (max-width: 800px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
+  }
 
 .post-card{
     background-color: rgb(197, 222, 231);
