@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, fetchPosts, updatePost } from "../redux/postActions";
 import EditModal from "./EditeModal";
@@ -7,6 +7,7 @@ import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const posts = useSelector((state) => state.posts.posts);
   const loading = useSelector((state) => state.posts.loading);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -46,14 +47,22 @@ const Home = () => {
 
   return (
     <div className="main-container">
-      <h1>Blog Posts</h1>
+      <div className="navigation-container">
+        <div className="nav-links">
+          <Link className="homepage-link" to={"/"}>
+            Home Page
+          </Link>
+          <Link className="new-post-link" to={"/post-form"}>
+            Create New Post
+          </Link>
+        </div>
+        <h1 className="blog-post-title">Blog Posts</h1>
+      </div>
       <div className="grid-container">
         {posts.map((post) => (
           <div className="post-card" key={`${post.id}-${Math.random()}`}>
-              <h3 className="post-title">{post.title}</h3>
-            <p className="p-author">
-              Author: {post.author}
-            </p>
+            <h3 className="post-title">{post.title}</h3>
+            <p className="p-author">Author: {post.author}</p>
             <p className="p-content">
               {post.content
                 ? `${post.content.slice(0, 80)}...`
@@ -65,12 +74,20 @@ const Home = () => {
               )}
             </p>
             <div className="btn-container">
-            <button className="update-btn" type="button" onClick={() => handleUpdatePost(post)}>
-              Update
-            </button>
-            <button className="delete-btn" type="button" onClick={() => handleDeletePost(post.id)}>
-              Delete
-            </button>
+              <button
+                className="update-btn"
+                type="button"
+                onClick={() => handleUpdatePost(post)}
+              >
+                Update
+              </button>
+              <button
+                className="delete-btn"
+                type="button"
+                onClick={() => handleDeletePost(post.id)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}

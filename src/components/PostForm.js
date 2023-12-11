@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { createPost } from '../redux/postActions';
 import './PostForm.css'
@@ -30,6 +31,7 @@ const PostForm = () => {
   return (
     <div className='container'>
     <div className='form-container'>
+      <Link className='back-link' to={'/'}>back</Link>
       <h2>Create New Post</h2>
       <form className='post-form' onSubmit={handleSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

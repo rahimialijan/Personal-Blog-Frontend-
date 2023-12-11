@@ -84,3 +84,28 @@
     margin: 0;
     padding: 0;
 }
+
+.navigation-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  position: relative;
+}
+
+.nav-links{
+ position: absolute;
+ left: 1px;
+ top: 10px;
+}
+.homepage-link{
+  padding-right: 20px;
+}
+
+.new-post-link,
+.homepage-link{
+  padding: 10px 20px;
+  color: rgb(28, 28, 28);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
