@@ -41,7 +41,14 @@ const Home = () => {
   }
 
   if (!posts || posts.length === 0) {
-    return <div>No posts available</div>;
+    return (
+      <div className="main-container">
+        <p>No posts available</p>
+        <Link className="new-post-link" to="/post-form">
+          Create New Post
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -62,8 +69,7 @@ const Home = () => {
           <div className="post-card" key={`${post.id}-${Math.random()}`}>
             <h3 className="post-title">{post.title}</h3>
             <p className="p-author">
-              Author:
-              {post.author}
+              {`Author:  ${post.author}`}
             </p>
             <p className="p-content">
               {post.content
