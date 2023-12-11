@@ -37,6 +37,7 @@ const PostForm = () => {
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="title">Title:</label>
         <input
+          required
           id="title"
           type="text"
           name="title"
@@ -46,6 +47,7 @@ const PostForm = () => {
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="author">Author:</label>
         <input
+          required
           id="author"
           type="text"
           name="author"
@@ -55,6 +57,7 @@ const PostForm = () => {
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="content">Content:</label>
         <textarea
+          required
           id="content"
           name="content"
           value={formData.content}
