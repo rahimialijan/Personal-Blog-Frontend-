@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPosts } from '../redux/postActions';
 import './PostDetails.css';
 
@@ -17,7 +17,7 @@ const PostDetails = () => {
       dispatch(fetchPosts());
     }
 
-    const currentPost = posts.find((p) => p.id === parseInt(postId));
+    const currentPost = posts.find((p) => p.id === parseInt(postId, 10));
     setPost(currentPost);
   }, [dispatch, postId, posts]);
 
@@ -34,14 +34,21 @@ const PostDetails = () => {
   }
 
   return (
-    <div className='details-container'>
-      <div className='post-details-container'>
-        <h2 className='post-title'>{post.title} Details</h2>
-        <p className='post-author'>Author: {post.author}</p>
-        <p className='post-content'>{post.content}</p>
+    <div className="details-container">
+      <div className="post-details-container">
+        <h2 className="post-title">
+          {post.title}
+          {' '}
+          Details
+        </h2>
+        <p className="post-author">
+          Author:
+          {post.author}
+        </p>
+        <p className="post-content">{post.content}</p>
       </div>
-      <div className='button-container'>
-        <button className='back-button' onClick={handleBack}>
+      <div className="button-container">
+        <button type="button" className="back-button" onClick={handleBack}>
           Back
         </button>
       </div>
