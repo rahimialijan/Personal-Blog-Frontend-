@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './EditModal.css';
 
 const EditModal = ({
   show, onClose, onSubmit, post,
@@ -33,10 +34,10 @@ const EditModal = ({
   };
 
   return (
-    <div className={`modal ${show ? 'show' : ''}`}>
+    <div className={`modal-overlay ${show ? 'show' : ''}`}>
       <div className="modal-content">
         <h2>Edit Post</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="updat-form" onSubmit={(e) => e.preventDefault()}>
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="edit-title">Title:</label>
           <input
