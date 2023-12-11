@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createPost } from '../redux/postActions';
+import './PostForm.css'
 
 const PostForm = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,10 @@ const PostForm = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
+    <div className='form-container'>
       <h2>Create New Post</h2>
-      <form onSubmit={handleSubmit}>
+      <form className='post-form' onSubmit={handleSubmit}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="title">Title:</label>
         <input
@@ -59,6 +61,7 @@ const PostForm = () => {
 
         <button type="submit">Submit</button>
       </form>
+    </div>
     </div>
   );
 };
