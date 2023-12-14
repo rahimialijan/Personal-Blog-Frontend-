@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPosts } from '../redux/postActions';
 import './PostDetails.css';
+import LoginPage from './LoginPage';
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -10,6 +11,7 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const posts = useSelector((state) => state.posts.posts);
   const loading = useSelector((state) => state.posts.loading);
+  const isAuthenticated = useSelector((state) => state.posts.isAuthenticated);
   const [post, setPost] = useState(null);
 
   useEffect(() => {
@@ -27,6 +29,15 @@ const PostDetails = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="main-container">
+        <p>You are not logged in. Please log in to view post details.</p>
+        <LoginPage />
+      </div>
+    );
   }
 
   if (!post) {

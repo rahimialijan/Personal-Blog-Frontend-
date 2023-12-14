@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, fetchPosts, updatePost } from '../redux/postActions';
+import { deletePost, fetchPosts, updatePost, logoutUser } from '../redux/postActions';
 import EditModal from './EditeModal';
 import './Home.css';
+import LoginPage from './LoginPage';
 
 const Home = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
   const loading = useSelector((state) => state.posts.loading);
+  const isAuthenticated = useSelector((state) => state.posts.isAuthenticated);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -36,8 +38,21 @@ const Home = () => {
     setSelectedPost(null);
   };
 
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="main-container">
+        <p>You are not logged in. Please log in to view posts.</p>
+        <LoginPage/>
+      </div>
+    );
   }
 
   if (!posts || posts.length === 0) {
@@ -47,10 +62,14 @@ const Home = () => {
         <Link className="new-post-link" to="/post-form">
           Create New Post
         </Link>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     );
   }
 
+ 
   return (
     <div className="main-container">
       <div className="navigation-container">
@@ -63,18 +82,20 @@ const Home = () => {
           </Link>
         </div>
         <h1 className="blog-post-title">Blog Posts</h1>
+
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
       <div className="grid-container">
         {posts.map((post) => (
           <div className="post-card" key={`${post.id}-${Math.random()}`}>
             <h3 className="post-title">{post.title}</h3>
-            <p className="p-author">
-              {`Author:  ${post.author}`}
-            </p>
+            <p className="p-author">{`Author:  ${post.author}`}</p>
             <p className="p-content">
               {post.content
                 ? `${post.content.slice(0, 80)}...`
-                : 'No content available'}
+                : "No content available"}
               {post.content && (
                 <Link to={`/post/${post.id}`}>
                   <h5 className="see-more">see more</h5>

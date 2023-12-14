@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { createPost } from '../redux/postActions';
 import './PostForm.css';
+import LoginPage from './LoginPage';
 
 const PostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.posts.isAuthenticated);
   const [formData, setFormData] = useState({
     title: '',
     author: '',
     content: '',
   });
+
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (!isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,13 +36,23 @@ const PostForm = () => {
     navigate('/');
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="container">
+        <div className="form-container">
+          <p>You are not logged in. Please log in to create a new post.</p>
+          <LoginPage />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       <div className="form-container">
         <Link className="back-link" to="/">back</Link>
         <h2>Create New Post</h2>
         <form className="post-form" onSubmit={handleSubmit}>
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="title">Title:</label>
           <input
             required
@@ -43,7 +62,6 @@ const PostForm = () => {
             value={formData.title}
             onChange={handleInputChange}
           />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="author">Author:</label>
           <input
             required
@@ -53,7 +71,6 @@ const PostForm = () => {
             value={formData.author}
             onChange={handleInputChange}
           />
-          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="content">Content:</label>
           <textarea
             required

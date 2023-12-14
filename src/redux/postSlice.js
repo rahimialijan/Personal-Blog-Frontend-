@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  updatePost, deletePost, createPost, fetchPosts,
+  updatePost, deletePost, createPost, fetchPosts, loginUser, logoutUser
 } from './postActions';
 
 const initialState = {
   posts: [],
   loading: false,
   error: null,
+  isAuthenticated: false,
 };
 
 const postSlice = createSlice({
@@ -71,7 +72,19 @@ const postSlice = createSlice({
         ...state,
         loading: false,
         error: null,
+      }))
+      builder
+      .addCase(loginUser.fulfilled, (state) => ({
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        error: null,
+      }))
+      .addCase(logoutUser.fulfilled, (state) => ({
+        ...state,
+        isAuthenticated: false,
       }));
+
   },
 });
 
