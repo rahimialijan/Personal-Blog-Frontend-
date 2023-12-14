@@ -4,8 +4,8 @@ import { loginUser } from '../redux/postActions';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.posts.isAuthenticated);
-  const loginError = useSelector((state) => state.posts.loginError); // Adjust this based on your actual Redux state structure
+ 
+  const loginError = useSelector((state) => state.posts.loginError);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -18,7 +18,7 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      {loginError && <p className="error-message">{loginError}</p>}
+      {loginError && <p className="error-message">Invalid Email Or Password</p>}
       <form onSubmit={(e) => e.preventDefault()}>
         <label>
           Email:
@@ -43,5 +43,6 @@ const LoginPage = () => {
     </div>
   );
 };
+
 
 export default LoginPage;

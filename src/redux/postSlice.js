@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   error: null,
   isAuthenticated: false,
+  loginError: null, 
 };
 
 const postSlice = createSlice({
@@ -74,11 +75,16 @@ const postSlice = createSlice({
         error: null,
       }))
       builder
-      .addCase(loginUser.fulfilled, (state) => ({
+      .addCase(loginUser.fulfilled, (state) => {
+        state.loading = false;
+        state.isAuthenticated = true;
+        state.loginError = null; // Reset login error on successful login
+      })
+      .addCase(loginUser.rejected, (state, action) => ({
         ...state,
         loading: false,
-        isAuthenticated: true,
-        error: null,
+        isAuthenticated: false,
+        loginError: action.error.message || "Login failed", // Ensure that the error message is correctly retrieved
       }))
       .addCase(logoutUser.fulfilled, (state) => ({
         ...state,
