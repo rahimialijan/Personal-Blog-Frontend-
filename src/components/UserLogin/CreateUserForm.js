@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../../redux/authActions';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'
+import { createUser } from '../../redux/authActions';
+import './Login.css';
 
 const CreateUserForm = () => {
   const dispatch = useDispatch();
@@ -21,18 +21,18 @@ const CreateUserForm = () => {
     }));
   };
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createUser(JSON.stringify(formData)));
-    navigate('/login')
+    navigate('/login');
   };
-  
 
   return (
     <div className="container">
       <div className="form-container">
         <h2>User Registration</h2>
         <form className="user-form" onSubmit={handleSubmit}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="email">Email:</label>
           <input
             required
@@ -42,6 +42,7 @@ const handleSubmit = (e) => {
             value={formData.email}
             onChange={handleInputChange}
           />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="password">Password:</label>
           <input
             required
@@ -51,6 +52,7 @@ const handleSubmit = (e) => {
             value={formData.password}
             onChange={handleInputChange}
           />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="password_confirmation">Confirm Password:</label>
           <input
             required
@@ -61,7 +63,7 @@ const handleSubmit = (e) => {
             onChange={handleInputChange}
           />
 
-          <button className='login-btn' type="submit">Register</button>
+          <button className="login-btn" type="submit">Register</button>
         </form>
       </div>
     </div>

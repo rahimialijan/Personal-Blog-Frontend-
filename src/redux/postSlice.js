@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  updatePost, deletePost, createPost, fetchPosts
+  updatePost, deletePost, createPost, fetchPosts,
 } from './postActions';
-import {loginUser, logoutUser, createUser} from './authActions'
+import { loginUser, logoutUser, createUser } from './authActions';
 
 const initialState = {
   posts: [],
   loading: false,
   error: null,
   isAuthenticated: false,
-  loginError: null, 
+  loginError: null,
 };
 
 const postSlice = createSlice({
@@ -74,8 +74,8 @@ const postSlice = createSlice({
         ...state,
         loading: false,
         error: null,
-      }))
-      builder
+      }));
+    builder
       .addCase(loginUser.fulfilled, (state) => {
         state.loading = false;
         state.isAuthenticated = true;
@@ -85,7 +85,7 @@ const postSlice = createSlice({
         ...state,
         loading: false,
         isAuthenticated: false,
-        loginError: action.error.message || "Login failed", 
+        loginError: action.error.message || 'Login failed',
       }))
       .addCase(logoutUser.fulfilled, (state) => ({
         ...state,
@@ -108,7 +108,6 @@ const postSlice = createSlice({
         isAuthenticated: false,
         error: action.error.message || 'User registration failed',
       }));
-
   },
 });
 

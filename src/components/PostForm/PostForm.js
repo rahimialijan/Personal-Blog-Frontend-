@@ -53,6 +53,7 @@ const PostForm = () => {
         <Link className="back-link" to="/">back</Link>
         <h2>Create New Post</h2>
         <form className="post-form" onSubmit={handleSubmit}>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="title">Title:</label>
           <input
             required
@@ -62,6 +63,7 @@ const PostForm = () => {
             value={formData.title}
             onChange={handleInputChange}
           />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="author">Author:</label>
           <input
             required
@@ -71,6 +73,7 @@ const PostForm = () => {
             value={formData.author}
             onChange={handleInputChange}
           />
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="content">Content:</label>
           <textarea
             required
@@ -79,7 +82,6 @@ const PostForm = () => {
             value={formData.content}
             onChange={handleInputChange}
           />
-
           <button type="submit">Submit</button>
         </form>
       </div>

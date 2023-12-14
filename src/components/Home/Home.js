@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   deletePost,
   fetchPosts,
   updatePost,
-} from "../../redux/postActions";
-import { logoutUser } from "../../redux/authActions";
-import EditModal from "../EditModal/EditeModal";
-import "./Home.css";
-import LoginPage from "../UserLogin/LoginPage";
+} from '../../redux/postActions';
+import { logoutUser } from '../../redux/authActions';
+import EditModal from '../EditModal/EditeModal';
+import './Home.css';
+import LoginPage from '../UserLogin/LoginPage';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Home = () => {
         <Link className="new-post-link" to="/post-form">
           Create New Post
         </Link>
-        <button className="logout-btn" onClick={handleLogout}>
+        <button type="button" className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
       </div>
@@ -78,7 +78,7 @@ const Home = () => {
     <div className="main-container">
       <div className="navigation-container">
         <div className="nav-links">
-          <button className="logout-btn" onClick={handleLogout}>
+          <button type="button" className="logout-btn" onClick={handleLogout}>
             Logout
           </button>
           <Link className="homepage-link" to="/">
@@ -97,7 +97,7 @@ const Home = () => {
             <p className="p-content">
               {post.content
                 ? `${post.content.slice(0, 80)}...`
-                : "No content available"}
+                : 'No content available'}
               {post.content && (
                 <Link to={`/post/${post.id}`}>
                   <h5 className="see-more">see more</h5>
