@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { createPost } from '../redux/postActions';
+import { createPost } from '../../redux/postActions';
 import './PostForm.css';
-import LoginPage from './LoginPage';
+import LoginPage from '../UserLogin/LoginPage';
 
 const PostForm = () => {
   const dispatch = useDispatch();

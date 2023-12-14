@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, fetchPosts, updatePost, logoutUser } from '../redux/postActions';
-import EditModal from './EditeModal';
-import './Home.css';
-import LoginPage from './LoginPage';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deletePost,
+  fetchPosts,
+  updatePost,
+  logoutUser,
+} from "../../redux/postActions";
+import EditModal from "../EditModal/EditeModal";
+import "./Home.css";
+import LoginPage from "../UserLogin/LoginPage";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -50,7 +55,7 @@ const Home = () => {
     return (
       <div className="main-container">
         <p>You are not logged in. Please log in to view posts.</p>
-        <LoginPage/>
+        <LoginPage />
       </div>
     );
   }
@@ -69,11 +74,13 @@ const Home = () => {
     );
   }
 
- 
   return (
     <div className="main-container">
       <div className="navigation-container">
         <div className="nav-links">
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
           <Link className="homepage-link" to="/">
             Home Page
           </Link>
@@ -81,11 +88,6 @@ const Home = () => {
             Create New Post
           </Link>
         </div>
-        <h1 className="blog-post-title">Blog Posts</h1>
-
-        <button className="logout-btn" onClick={handleLogout}>
-          Logout
-        </button>
       </div>
       <div className="grid-container">
         {posts.map((post) => (

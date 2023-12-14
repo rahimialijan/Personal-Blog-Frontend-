@@ -40,8 +40,6 @@ export const updatePost = createAsyncThunk('posts/updatePost', async ({ postId, 
 });
 
 
-// ... (existing imports)
-
 export const loginUser = createAsyncThunk('user/loginUser', async ({ email, password }) => {
   try {
     const response = await axios.post('http://localhost:3000/api/v1/login', { email, password });

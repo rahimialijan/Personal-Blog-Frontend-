@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/postActions';
-import { Link } from 'react-router-dom';
+import { loginUser } from '../../redux/postActions';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
- 
+ const navigate = useNavigate()
   const loginError = useSelector((state) => state.posts.loginError);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -14,36 +14,37 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     dispatch(loginUser(loginData));
+    navigate('/')
   };
 
   return (
-    <div className="login-container">
+    <div className="container">
+    <div className="form-container">
       <h2>Login</h2>
       {loginError && <p className="error-message">Invalid Email Or Password</p>}
-      <form onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Email:
+      <form className='login-form' onSubmit={(e) => e.preventDefault()}>
+      <label htmlFor="email">Email:</label>
           <input
+            id='email'
             type="text"
             value={loginData.email}
             onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
           />
-        </label>
-        <label>
-          Password:
+        <label htmlFor="password">Password:</label>
           <input
+            id='password'
             type="password"
             value={loginData.password}
             onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
           />
-        </label>
         <button className="login-btn" onClick={handleLogin}>
           Login
         </button>
       </form>
-      <Link className="new-post-link" to="/register">
+      <Link className="create-new-use" to="/register">
           Create New User
-        </Link>
+      </Link>
+    </div>
     </div>
   );
 };

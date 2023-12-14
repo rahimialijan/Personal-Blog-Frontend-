@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../redux/postActions';
+import { createUser } from '../../redux/postActions';
+import { useNavigate } from 'react-router-dom';
+import './Login.css'
 
 const CreateUserForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +24,7 @@ const CreateUserForm = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createUser(JSON.stringify(formData)));
+    navigate('/login')
   };
   
 
@@ -57,7 +61,7 @@ const handleSubmit = (e) => {
             onChange={handleInputChange}
           />
 
-          <button type="submit">Register</button>
+          <button className='login-btn' type="submit">Register</button>
         </form>
       </div>
     </div>

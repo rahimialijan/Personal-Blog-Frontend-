@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchPosts } from '../redux/postActions';
+import { fetchPosts } from '../../redux/postActions';
 import './PostDetails.css';
-import LoginPage from './LoginPage';
+import LoginPage from '../UserLogin/LoginPage';
 
 const PostDetails = () => {
   const { postId } = useParams();

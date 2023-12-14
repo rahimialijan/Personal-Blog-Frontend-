@@ -84,7 +84,7 @@ const postSlice = createSlice({
         ...state,
         loading: false,
         isAuthenticated: false,
-        loginError: action.error.message || "Login failed", // Ensure that the error message is correctly retrieved
+        loginError: action.error.message || "Login failed", 
       }))
       .addCase(logoutUser.fulfilled, (state) => ({
         ...state,
