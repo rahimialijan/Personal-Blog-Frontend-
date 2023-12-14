@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { createPost } from '../redux/postActions';
+import { createPost } from '../../redux/postActions';
 import './PostForm.css';
+import LoginPage from '../UserLogin/LoginPage';
 
 const PostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.posts.isAuthenticated);
   const [formData, setFormData] = useState({
     title: '',
     author: '',
     content: '',
   });
+
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (!isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +35,17 @@ const PostForm = () => {
     dispatch(createPost(formData));
     navigate('/');
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="container">
+        <div className="form-container">
+          <p>You are not logged in. Please log in to create a new post.</p>
+          <LoginPage />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -62,7 +82,6 @@ const PostForm = () => {
             value={formData.content}
             onChange={handleInputChange}
           />
-
           <button type="submit">Submit</button>
         </form>
       </div>

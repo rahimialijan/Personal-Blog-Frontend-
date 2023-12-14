@@ -1,0 +1,37 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#email,
+#password,
+#password_confirmation {
+  padding: 10px;
+  font-size: 1rem;
+  color: gray;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+#email:hover,
+#password:hover,
+#password_confirmation:hover {
+  border: 2px solid lightblue;
+}
+
+.create-new-user {
+  padding: 10px 20px;
+  color: rgb(0, 76, 175);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.login-btn {
+  margin-top: 20px;
+}
