@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/postActions';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ const LoginPage = () => {
           Login
         </button>
       </form>
+      <Link className="new-post-link" to="/register">
+          Create New User
+        </Link>
     </div>
   );
 };

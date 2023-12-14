@@ -6,6 +6,7 @@ import Home from './components/Home';
 import PostDetails from './components/PostDetails';
 import store from './store';
 import PostForm from './components/PostForm';
+import CreateUserForm from './components/CreateUserForm';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/post/:postId" element={<PostDetails />} />
           <Route path="/post-form" element={<PostForm />} />
+          <Route path="/register" element={<CreateUserForm />} />
         </Routes>
       </Router>
     </Provider>
