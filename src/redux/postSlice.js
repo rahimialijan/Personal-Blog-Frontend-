@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  updatePost, deletePost, createPost, fetchPosts, loginUser, logoutUser, createUser
+  updatePost, deletePost, createPost, fetchPosts
 } from './postActions';
+import {loginUser, logoutUser, createUser} from './authActions'
 
 const initialState = {
   posts: [],

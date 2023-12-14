@@ -5,8 +5,8 @@ import {
   deletePost,
   fetchPosts,
   updatePost,
-  logoutUser,
 } from "../../redux/postActions";
+import { logoutUser } from "../../redux/authActions";
 import EditModal from "../EditModal/EditeModal";
 import "./Home.css";
 import LoginPage from "../UserLogin/LoginPage";
