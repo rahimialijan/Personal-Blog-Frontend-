@@ -21,7 +21,7 @@ export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
 
 export const createUser = createAsyncThunk('user/createUser', async (formData) => {
   try {
-    const response = await axios.post('http://localhost:3000/api/v1/v1/users', formData, {
+    const response = await axios.post('http://localhost:3000/api/v1/users', formData, {
       headers: {
         'Content-Type': 'application/json',
       },
